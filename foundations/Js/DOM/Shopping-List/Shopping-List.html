@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Just+Another+Hand&family=Patrick+Hand&display=swap');
+
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #E6E6E6;
+        }
+
+        h1, form{
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: "Gloria Hallelujah", cursive;
+            width: 100%;
+            height: 100px;
+            background-color: #001F3D;
+            color: #ED985F;
+            align-content: center;
+            border-radius: 5px;
+            margin: 0;
+        }
+
+        form {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            height: 100px;
+        }
+        
+        label{
+            color: #001F3D;
+            font-family: "Patrick Hand", cursive;
+            font-size: x-large;
+        }
+
+        input {
+            width: 10%px;
+            height: 25px;
+            border-radius: 5px;
+            color: #001F3D;
+            background-color: #E6E6E6;
+        }
+        button {
+            width: auto;
+            color: #001F3D;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            color: #001F3D;
+            background: linear-gradient(#ED985F, #F7B980);
+        }
+        
+        ul {
+            padding: 0;
+        }
+
+        li{
+            font-family: "serif";
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 20em;
+            height: 3em;
+            margin-bottom: .2em;
+            border-radius: 0.3em;
+            color: #E6E6E6;
+            list-style: none;
+            background-color: #001F3D;
+            flex-wrap: wrap;
+        }
+        
+        li button {
+            font-size: 12px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping List</h1>
+
+    <form>
+        <label for="item">Enter a new item</label>
+        <div class="container">
+            <input type="text" name="item" id="item">
+            <button>></button>
+        </div>        
+    </form>
+
+    <ul></ul>
+
+    <script>
+        const list = document.querySelector("ul");
+        const input = document.querySelector("input");
+        const button = document.querySelector("button");
+        const delButton = document.querySelector("ul > li > button")
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            let value = input.value;
+            if(value.length > 0){
+                input.value = '';
+                
+                let listItem = document.createElement('li');
+                let span = document.createElement('span');
+                let delButton = document.createElement('button');
+                
+                listItem.appendChild(span);
+                listItem.appendChild(delButton);
+    
+                span.textContent = value;
+                delButton.innerText = "<";
+    
+                list.appendChild(listItem);
+    
+                delButton.addEventListener('click', (e) => {
+                    e.target.parentElement.remove();
+                })
+                input.focus();
+            }
+        })
+
+    </script>
+</body>
+</html>
